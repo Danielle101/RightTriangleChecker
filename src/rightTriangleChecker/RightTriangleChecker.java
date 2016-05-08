@@ -4,61 +4,68 @@ public class RightTriangleChecker {
 
 	
 		    public static void main(String[] args) {
-		    	// Declare variables
-		    	double side1, side2, side3;
-		    	Scanner kbReader = new Scanner(System.in);
+		    	String choice = "y";
+		    	double sideA; 
+		    	double sideB; 
+		    	double sideC;
+		    	Scanner scan = new Scanner(System.in);
+while (choice.equalsIgnoreCase("y") ){
+				// user inputs the side values
+				System.out.print("Enter side 1: ");
+				sideA = scan.nextDouble();
 
-				// Query values from the user
-				System.out.print("Enter one side: ");
-				side1 = kbReader.nextDouble();
+				System.out.print("Enter side 2: ");
+				sideB = scan.nextDouble();
 
-				System.out.print("Enter another side: ");
-				side2 = kbReader.nextDouble();
-
-				System.out.print("Enter one last side: ");
-				side3 = kbReader.nextDouble();
-
-				pythagorean(side1, side2, side3);
+				System.out.print("Enter side 3: ");
+				sideC = scan.nextDouble();
+				//call method for pythagorean theorem formula
+				pythagorean(sideA, sideB, sideC);
+				System.out.println("Would you like to enter another triangle? (y/n):");
+				choice=scan.nextLine();
+}
 		    }
-		    static void pythagorean(double side1, double side2, double side3) {
-		    	// This gets the largest number and does the pythagorean theorem.
-		    	// Set our variables
+		    static void pythagorean(double sideA, double sideB, double sideC) {
 		    	boolean isRightTriangle;
-		    	double largestSide, secondarySide, secondarySide2, cSquared, mathResults;
+		    	double longestSide; 
+		    	double secondarySide; 
+		    	double secondarySide2; 
+		    	
+		    	double calculations;
 
-		    	// Do some calculations!
-		    	largestSide = Math.max(side1, Math.max(side2, side3));
-		    	cSquared = Math.pow(largestSide, 2);
+		 
+		    	longestSide = Math.max(sideA, Math.max(sideB, sideC));
+		    	
 
-				if ((side1 == largestSide && (side2 == largestSide || side3 == largestSide))
-					|| (side2 == largestSide && (side1  == largestSide || side3 == largestSide)) ||
-						(side3 == largestSide && (side1 == largestSide || side2 == largestSide))) {
+				if ((sideA == longestSide && (sideB == longestSide || sideC == longestSide))
+					|| (sideB == longestSide && (sideA  == longestSide || sideC == longestSide)) ||
+						(sideC == longestSide && (sideA == longestSide || sideB == longestSide))) {
 					// More than one side is the largest! It's safe to assume this isn't a right triangle.
 					isRightTriangle = false;
 				}
 				
-				// Run the numbers through some checks.
-				if (largestSide == side1) {
-					secondarySide = side2;
-					secondarySide2 = side3;
+				//designate all sides to A,B, and C based on length
+				if (longestSide == sideA) {
+					secondarySide = sideB;
+					secondarySide2 = sideC;
 				}
-				else if(largestSide == side2){
-					secondarySide = side1;
-					secondarySide2 = side3;
+				else if(longestSide == sideB){
+					secondarySide = sideA;
+					secondarySide2 = sideC;
 				}
 				else{
-					secondarySide = side1;
-					secondarySide2 = side2;
+					secondarySide = sideA;
+					secondarySide2 = sideB;
 				}
 
 				// Square the two small sides and add them together.
-				mathResults = Math.pow(secondarySide, 2) + Math.pow(secondarySide2, 2);
-				if (mathResults == Math.pow(largestSide, 2)) // Is the largest side (squared) equal to our equation above?
+				calculations = Math.pow(secondarySide, 2) + Math.pow(secondarySide2, 2);
+				if (calculations == Math.pow(longestSide, 2)){ 
 					isRightTriangle = true;
-				System.out.println("Yes! This is a right triangle!");
+				System.out.println("Yes! This is a right triangle!");}
 				else
-					isRightTriangle = false;
-
 				System.out.println("No! This is not a right triangle!");
+				
 		    }
+	
 		}
