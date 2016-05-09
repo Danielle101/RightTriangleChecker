@@ -15,20 +15,23 @@ public class RightTriangleChecker {
 		double sideB;
 		double sideC;
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Welcome to the Right Triangle Checker App! This app"
+				+ " will verify whether or not a triangle is a right triangle  \nbased"
+				+ " on the data that you input. Let's get started!\n");
 		while (choice.equalsIgnoreCase("y")) {
 			// user inputs the side values
-			System.out.print("Enter side 1: ");
-			sideA = scan.nextDouble();
+			System.out.print("Enter side 1 (1-100:) ");
+			sideA = Validator.getValidDouble(1, 100);
 
-			System.out.print("Enter side 2: ");
-			sideB = scan.nextDouble();
+			System.out.print("Enter side 2 (1-100): ");
+			sideB = Validator.getValidDouble(1, 100);
 
-			System.out.print("Enter side 3: ");
-			sideC = scan.nextDouble();
+			System.out.print("Enter side 3 (1-100): ");
+			sideC = Validator.getValidDouble(1, 100);
 			// call method for pythagorean theorem formula
 			pythagorean(sideA, sideB, sideC);
-			System.out.println("Would you like to enter another triangle? (y/n):");
-			choice = scan.next();
+			
+			choice = Validator.getString("\nWould you like to enter another triangle? (y/n):");
 		}
 		System.out.println("Good-bye");
 	}
